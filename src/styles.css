@@ -1,0 +1,141 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Provost design system — "Archival grid"
+ * Warm paper background, ink foreground, terracotta primary.
+ * Inter (sans) + JetBrains Mono (mono, for labels/figures).
+ */
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+:root {
+  --radius: 0px;
+  --background: oklch(0.968 0.014 95);
+  --foreground: oklch(0.235 0.017 254);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.235 0.017 254);
+  --primary: oklch(0.53 0.145 39);
+  --primary-foreground: oklch(0.985 0.008 95);
+  --secondary: oklch(0.93 0.012 95);
+  --secondary-foreground: oklch(0.235 0.017 254);
+  --muted: oklch(0.93 0.012 95);
+  --muted-foreground: oklch(0.235 0.017 254 / 60%);
+  --accent: oklch(0.93 0.012 95);
+  --accent-foreground: oklch(0.235 0.017 254);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.235 0.017 254 / 12%);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility enter {
+  animation: slideUp 0.6s var(--ease-out-expo) both;
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+@utility field {
+  width: 100%;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  font-size: 0.875rem;
+  color: var(--foreground);
+
+  &::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+}
+
+@utility btn-primary {
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.9rem 1rem;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: opacity 0.2s var(--ease-out-expo);
+
+  &:hover {
+    opacity: 0.88;
+  }
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-size: 10px;
+  color: var(--muted-foreground);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 20%, transparent);
+    color: var(--primary);
+  }
+}
